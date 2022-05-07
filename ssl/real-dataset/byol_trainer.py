@@ -353,7 +353,7 @@ class BYOLTrainer:
 
         linear_layers = self.linear_layers
         if len(linear_layers) == 1:
-            assert self.predictor_reg in ["diagonal", "symmetric", "symmetric_norm", "onehalfeig", "minimal_space", "solve", "corr", "partition"], f"predictor_reg: {self.predictor_reg} not valid!" 
+            # assert self.predictor_reg in ["diagonal", "symmetric", "symmetric_norm", "onehalfeig", "minimal_space", "solve", "corr", "partition"], f"predictor_reg: {self.predictor_reg} not valid!" 
             # Make it symmetric
             with torch.no_grad():
                 w = linear_layers[0].weight.clone()
@@ -493,7 +493,7 @@ class BYOLTrainer:
 
         elif len(linear_layers) == 2:
             # Two layer without batch norm. Make it symmetric!
-            assert self.predictor_reg in ["symmetric", "symmetric_row_norm"], f"predictor_reg: {self.predictor_reg} not valid!"  
+            # assert self.predictor_reg in ["symmetric", "symmetric_row_norm"], f"predictor_reg: {self.predictor_reg} not valid!"  
             with torch.no_grad():
                 # hidden_size x input_size
                 w0 = linear_layers[0].weight.clone()
