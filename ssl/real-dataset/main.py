@@ -31,7 +31,7 @@ def hydra2dict(args):
 
     return args
 
-@hydra.main("config/byol_config.yaml")
+@hydra.main(config_path="config", config_name="byol_config")
 def main(args):
     log.info("Command line: \n\n" + common_utils.pretty_print_cmd(sys.argv))
     log.info(f"Working dir: {os.getcwd()}")
@@ -40,7 +40,7 @@ def main(args):
 
     os.environ["CUDA_VISIBLE_DEVICES"] = f"{args.gpu}"
     torch.manual_seed(args.seed)
-    log.info(args.pretty())
+    #log.info(args.pretty())
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     log.info(f"Training with: {device}")
